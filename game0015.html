@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>Game 15</title>
+</head>
+<body>
+<canvas id="block4" height="300" width="300" style="border:1px solid green;float:left;"></canvas>
+<button onclick="tracemain4()">Start/Resume</button>
+<button onclick="clearInterval(ter4)">Stop</button>
+<script>
+pos24=document.getElementById("block4");
+posc24=pos24.getContext("2d");
+var ter;
+var pixxmain4=new Array();
+var pixymain4=new Array();
+var pixxchan4=new Array();
+var pixychan4=new Array();
+var change,change1=50,change2=50,mem=1;
+function init4(){
+for(i = 0 ; i < 11 ; i++)
+{
+cos = Math.cos(((36*(i+1))/180)*Math.PI);
+pixxmain4[i]= Math.floor(50*cos) + 150;
+sin = Math.sin(((36*(i+1))/180)*Math.PI);
+pixymain4[i]= 150 - Math.floor(50*sin);
+}
+}
+function tracemain4(){
+init4();
+ter4=setInterval(function (){trace4();},100);
+}
+function trace4(){
+for(i = 0 ; i <= 12 ; i++)
+{
+if((i%2)==0)
+{
+change=change1;
+}
+else
+{
+change=change2;
+}
+cos = Math.cos(((36*(i+1)+18)/180)*Math.PI);
+pixxchan4[i]= Math.floor(change*cos) + 150;
+sin = Math.sin(((36*(i+1)+18)/180)*Math.PI);
+pixychan4[i]= 150 - Math.floor(change*sin);
+}
+draw4();
+if(change2>102)
+{
+mem=1;
+}
+if(mem==-1)
+{
+change1-=5;
+change2+=5;
+}
+if(change2<3)
+{
+mem=-1;
+}
+if(mem==1)
+{
+change1+=5;
+change2-=5;
+}
+}
+function draw4(){
+pos24.height=pos24.height;
+for(i=0;i<=10;i++)
+{
+posc24.moveTo(pixxmain4[i],pixymain4[i]);
+posc24.lineTo(pixxchan4[i],pixychan4[i]);
+posc24.stroke();
+posc24.moveTo(pixxmain4[i+1],pixymain4[i+1]);
+posc24.lineTo(pixxchan4[i],pixychan4[i]);
+posc24.stroke();
+}
+}
+</script>
+</body>
+</html>

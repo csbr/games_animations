@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>Game A02</title>
+</head>
+<body>
+<div id="m01" style="border: 2px solid black; height: 200px; width: 250px;">
+<canvas id="c11" onmouseover="tracemain()" height="50" width="50" style="float:left"></canvas>
+<canvas id="c12" height="50" width="50" style="float:left"></canvas>
+<canvas id="c13" height="50" width="50" style="float:left"></canvas>
+<canvas id="c14" height="50" width="50" style="float:left"></canvas>
+<canvas id="c15" height="50" width="50" style="float:left"></canvas>
+<canvas id="c21" height="50" width="50" style="float:left"></canvas>
+<canvas id="c22" height="50" width="50" style="float:left"></canvas>
+<canvas id="c23" height="50" width="50" style="float:left"></canvas>
+<canvas id="c24" height="50" width="50" style="float:left"></canvas>
+<canvas id="c25" height="50" width="50" style="float:left"></canvas>
+<canvas id="c31" height="50" width="50" style="float:left"></canvas>
+<canvas id="c32" height="50" width="50" style="float:left"></canvas>
+<canvas id="c33" height="50" width="50" style="float:left"></canvas>
+<canvas id="c34" height="50" width="50" style="float:left"></canvas>
+<canvas id="c35" height="50" width="50" style="float:left"></canvas>
+<canvas id="c41" height="50" width="50" style="float:left"></canvas>
+<canvas id="c42" height="50" width="50" style="float:left"></canvas>
+<canvas id="c43" height="50" width="50" style="float:left"></canvas>
+<canvas id="c44" height="50" width="50" style="float:left"></canvas>
+<canvas id="c45" height="50" width="50" style="float:left"></canvas>
+<hr>
+</div>
+<script>
+var c=1,incx=1,incy=1,posx=1,posy=1,ter;
+function tracemain(){
+ter=setInterval(function (){trace();},500);
+}
+function trace(){
+block2='c'+posy+posx;
+if(incy==1){
+posy++;
+}
+else
+{
+posy--;
+};
+if(incx==1)
+{
+posx++;
+}
+else
+{
+posx--;
+};
+block='c'+posy+posx;
+draw(block,block2);
+if((posy>=4)&&(incy==1))
+{
+incy=-1;
+};
+if((posy<=1)&&(incy==-1))
+{
+incy=1
+};
+if((posx>=5)&&(incx==1))
+{
+incx=-1;
+};
+if((posx<=1)&&(incx==-1))
+{
+incx=1
+};
+}
+function draw(block,block2){
+clear(block2);
+pos2=document.getElementById(block);
+posc2=pos2.getContext("2d");
+posc2.fillStyle="#0987dd";
+posc2.beginPath();
+posc2.arc(25,25,10,0,2*Math.PI);
+posc2.fill();
+}
+function clear(val){
+pos12=document.getElementById(val);
+posc12=pos12.getContext("2d");
+posc12.fillStyle="#ffffff";
+posc12.fillRect(0,0,50,50);
+}
+</script>
+</body>
+</html>

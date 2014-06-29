@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Game 16</title>
+</head>
+<body>
+<canvas id="block" height="300" width="300" style="border:1px solid green;float:left;"></canvas>
+<button onclick="tracemain()">Start/Resume</button>
+<button onclick="clearInterval(ter)">Stop</button>
+<script>
+pos=document.getElementById("block");
+posc=pos.getContext("2d");
+var ter;
+var pixxmain=new Array();
+var pixymain=new Array();
+var pixxchan=new Array();
+var pixychan=new Array();
+var angle=0,change,change1,change2;
+function init(angle){
+for(i = 0 ; i < 11 ; i++)
+{
+cos = Math.cos(((36*(i+1)+angle)/180)*Math.PI);
+pixxmain[i]= Math.floor(50*cos) + 150;
+sin = Math.sin(((36*(i+1)+angle)/180)*Math.PI);
+pixymain[i]= 150 - Math.floor(50*sin);
+}
+}
+function tracemain(){
+
+ter=setInterval(function (){trace();},1);
+
+}
+function trace(){
+init(angle);
+change1=50,change2=50;
+draw(angle);
+angle-=1;
+if(angle<-720)
+{
+angle=0;
+}
+}
+function draw(angle){
+pos.height=pos.height;
+do {
+for(i = 0 ; i <= 12 ; i++)
+{
+if((i%2)==0)
+{
+change=change1;
+}
+else
+{
+change=change2;
+}
+cos = Math.cos(((36*(i+1)+18+angle)/180)*Math.PI);
+pixxchan[i]= Math.floor(change*cos) + 150;
+sin = Math.sin(((36*(i+1)+18+angle)/180)*Math.PI);
+pixychan[i]= 150 - Math.floor(change*sin);
+}
+for(i=0;i<=10;i++)
+{
+posc.moveTo(pixxmain[i],pixymain[i]);
+posc.lineTo(pixxchan[i],pixychan[i]);
+posc.stroke();
+posc.moveTo(pixxmain[i+1],pixymain[i+1]);
+posc.lineTo(pixxchan[i],pixychan[i]);
+posc.stroke();
+}
+change1-=5;
+change2+=5;
+} while(change2<100);
+}
+</script>
+</body>
+</html>

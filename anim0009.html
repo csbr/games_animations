@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Game 09</title>
+</head>
+<body>
+<canvas id="block" height="300" width="300" style="border:1px solid green;float:left;"></canvas>
+<button onclick="tracemain9()">Start/Resume</button>
+<button onclick="clearInterval(ter9)">Stop</button>
+<script>
+var ter9,incx=60,incy=60,ix=1,iy=0,angle=0;
+function tracemain9(){
+ter9=setInterval(function(){trace9()},10);
+}
+function trace9(){
+cos = Math.cos((angle/180)*Math.PI);
+c= Math.floor(50*cos) + incx;
+sin = Math.sin((angle/180)*Math.PI);
+d= incy - Math.floor(50*sin);
+draw(c,d);
+if((incx==240)&&(ix==1)&&(iy==0))
+{
+iy=1;
+ix=0;
+}
+if((incy==240)&&(iy==1)&&(ix==0))
+{
+iy=0;
+ix=-1;
+}
+if((incx==60)&&(ix==-1)&&(iy==0))
+{
+iy=-1;
+ix=0;
+}
+incx+=ix;
+incy+=iy;
+if((incx==60)&&(incy==60))
+{
+clearInterval(ter9);
+}
+angle+=6;
+}
+function draw(c,d){
+draw9=document.getElementById("block");
+draw29=draw9.getContext("2d");
+draw29.clearRect(0,0,300,300);
+draw29.moveTo(incx,incy);
+draw29.lineTo(c,d);
+draw29.stroke();
+}
+
+</script>
+</body>
+</html>
